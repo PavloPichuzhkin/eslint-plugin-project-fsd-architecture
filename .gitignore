@@ -1,0 +1,17 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+.idea
+/node_modules
+/storybook-static
+/build
+.loki
+.loki/report.html
+.loki/report.json
+/coverage
+/src/shared/assets/icons/Vector.svg
+
+# Local Netlify folder
+.netlify
+
+/reports
