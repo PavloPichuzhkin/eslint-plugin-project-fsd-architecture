@@ -48,6 +48,11 @@ ruleTester.run("public-api-imports-validation", rule, {
       code: "import { Country, CountrySelect } from '@/entities/CountrySelect';",
       options: enableOptions,
     },
+    { // but!  hir is testFilesPatterns, and it is already in prod build, and it is OK!
+      filename: 'E:\\advanced-react\\src\\features\\EditableProfileCard\\model\\slice\\profileSlice.test.ts',
+      code: "import { Country, CountrySelect } from '@/entities/CountrySelect';",
+      options: enableOptions,
+    },
     {
       filename: 'E:\\advanced-react\\src\\entities\\file.test.ts',
       code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing'",
