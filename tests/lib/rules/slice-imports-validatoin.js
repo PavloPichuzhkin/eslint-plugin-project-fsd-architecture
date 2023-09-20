@@ -27,6 +27,16 @@ ruleTester.run("slice-imports-validation", rule, {
       filename: 'E:\\advanced-react\\src\\features\\EditableProfileCard\\ui\\EditableProfileCard\\EditableProfileCard.tsx',
       code: "import { getProfileForm } from '../../model/selectors/getProfileForm/getProfileForm';",
     },
+    { // case processes public-api-imports-validation rule (ERROR)
+      filename: 'E:\\advanced-react\\src\\features\\EditableProfileCard\\ui\\EditableProfileCard\\EditableProfileCard.tsx',
+      code: "import { ProfileCard } from '@/entities/Profile/ui/ProfileCard';",
+      errors: [],
+      options: [
+  {
+    alias: '@'
+  }
+],
+    },
   ],
 
   invalid: [

@@ -34,14 +34,14 @@ Then configure the rules you want to use under the rules section.
 ```json
 {
     "rules": {
-        "project-fsd-architecture/rule-name": 2
+        "project-fsd-architecture/rule-name": "error"
     }
 }
 ```
 
-## Rules
+## Rules 
 
-<!-- begin auto-generated rules list -->
+<!-- begin auto-generated rules list  -->
 
 | Name                                      | Description                                                          |
 | :--------------------------------------------------------------------------- | :------------------------------------------------------------------- |

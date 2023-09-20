@@ -20,101 +20,67 @@ const ruleTester = new RuleTester({
   parserOptions: {ecmaVersion: 6, sourceType: 'module'}
 });
 
-const aliasOptions = [
-  {
-    alias: '@'
-  }
-]
+const enableOptions = [{
+  alias: '@',
+  testFilesPatterns: ['**/*.test.ts', '**/StoreProviderDecorator.tsx']
+}]
 
 ruleTester.run("public-api-imports-validation", rule, {
   valid: [
     {
       code: "import { Comment } from '../../model/types/comments';",
       errors: [],
-      options: aliasOptions,
+      options: enableOptions,
     },
-    {
-      code: "import { getProfileForm } from '@/features/EditableProfileCard';",
+    { // now this case processes slice-imports-validation rule
+      filename: 'E:\\advanced-react\\src\\features\\EditableProfileCard\\ui\\EditableProfileCard\\EditableProfileCard.tsx',
+      code: "import { getProfileForm } from 'features/EditableProfileCard/model/selectors/getProfileForm/getProfileForm';",
+      options: enableOptions,
+    },
+    { // invalid #1
+      filename: 'E:\\advanced-react\\src\\features\\EditableProfileCard\\ui\\EditableProfileCard\\EditableProfileCard.tsx',
+      code: "import { ProfileCard } from '@/entities/Profile';",
       errors: [],
-      options: aliasOptions,
+      options: enableOptions,
     },
     {
-      code: "import { getProfileForm } from '@/features/EditableProfileCard';",
-    },
-    {
+      filename: 'E:\\advanced-react\\src\\entities\\Profile\\ui\\ProfileCard.tsx',
       code: "import { Country, CountrySelect } from '@/entities/CountrySelect';",
+      options: enableOptions,
     },
     {
       filename: 'E:\\advanced-react\\src\\entities\\file.test.ts',
       code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing'",
       errors: [],
-      options: [{
-        alias: '@',
-        testFilesPatterns: ['**/*.test.ts', '**/StoreDecorator.tsx']
-      }],
+      options: enableOptions,
     },
     {
-      filename: 'E:\\advanced-react\\src\\entities\\StoreDecorator.tsx',
-      code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing'",
+      filename: 'E:\\advanced-react\\src\\shared\\config\\storybook\\StoreProviderDecorator.tsx',
+      code: "import { loginReducer } from '@/features/AuthByUsername/testing';",
       errors: [],
-      options: [{
-        alias: '@',
-        testFilesPatterns: ['**/*.test.ts', '**/StoreDecorator.tsx']
-      }],
+      options: enableOptions,
     }
   ],
 
   invalid: [
     {
-      code: "import { getProfileForm } from 'features/EditableProfileCard/model/selectors/getProfileForm/getProfileForm';",
+      filename: 'E:\\advanced-react\\src\\features\\EditableProfileCard\\ui\\EditableProfileCard\\EditableProfileCard.tsx',
+      code: "import { ProfileCard } from '@/entities/Profile/ui/ProfileCard';",
       errors: [{ message: "Imports from other modules are only allowed from the public API (index.ts)." }],
-      options: aliasOptions,
+      options: enableOptions,
     },
-    // {
-    //   filename: 'E:\\advanced-react\\src\\entities\\StoreDecorator.tsx',
-    //   code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing/file.tsx'",
-    //   errors: [{message: 'Test data should be imported from public API (testing.ts).'}],
-    //   options: [{
-    //     alias: '@',
-    //     testFilesPatterns: ['**/*.test.ts', '**/StoreDecorator.tsx']
-    //   }],
-    // },
-    // {
-    //   filename: 'E:\\advanced-react\\src\\entities\\StoreDecorator.tsx',
-    //   code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing/'",
-    //   errors: [{message: 'Test data should be imported from public API (testing.ts).'}],
-    //   options: [{
-    //     alias: '@',
-    //     testFilesPatterns: ['**/*.test.ts', '**/StoreDecorator.tsx']
-    //   }],
-    // },
-    // {
-    //   filename: 'E:\\advanced-react\\src\\entities\\entities\\forbidden.ts',
-    //   code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing'",
-    //   errors: [{message: 'Imports from other modules are only allowed from the public API (index.ts).'}],
-    //   options: [{
-    //     alias: '@',
-    //     testFilesPatterns: ['**/*.test.ts', '**/StoreDecorator.tsx']
-    //   }],
-    // },
-    {
-      filename: 'E:\\advanced-react\\src\\entities\\StoreDecorator.tsx',
-      code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing/file.tsx'",
-      errors: [{message: 'Imports from other modules are only allowed from the public API (index.ts).'}],
-      options: [{
-        alias: '@',
-        testFilesPatterns: ['**/*.test.ts', '**/StoreDecorator.tsx']
-      }],
-    },
-    {
-      filename: 'E:\\advanced-react\\src\\entities\\forbidden.ts',
+    { // no testFilesPatterns
+      filename: 'E:\\advanced-react\\src\\entities\\entities\\forbidden.ts',
       code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing'",
+      errors: [{message: 'Imports from other modules are only allowed from the public API (index.ts).'}],
+      options: enableOptions,
+    },
+    {
+      filename: 'E:\\advanced-react\\src\\entities\\StoreProviderDecorator.tsx',
+      code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing/file.tsx'",
       errors: [{message: 'Test data should be imported from public API (testing.ts).'}],
-      options: [{
-        alias: '@',
-        testFilesPatterns: ['**/*.test.ts', '**/StoreDecorator.tsx']
-      }],
-    }
+      options: enableOptions,
+    },
 
   ],
 });
