@@ -24,7 +24,8 @@ const ruleTester = new RuleTester(
 
 const enableOptions = [{
   alias: '@',
-  ignoreImportPatterns: ['**/StoreProvider']
+  ignoreImportPatterns: ['**/StoreProvider'],
+  testFilesPatterns: ['**/tests/*']
 }]
 
 ruleTester.run("layer-imports", rule, {
@@ -71,6 +72,12 @@ ruleTester.run("layer-imports", rule, {
       errors: [],
       options: enableOptions,
     },
+    {
+      filename: 'E:\\advanced-react\\src\\shared\\assets\\tests\\mockArticleData.ts...',
+      code: "import { Article, ArticleType, ArticleBlockType } from '@/entities/Article';",
+      errors: [],
+      options: enableOptions,
+    },
   ],
 
   invalid: [
@@ -91,6 +98,14 @@ ruleTester.run("layer-imports", rule, {
       code: "import { addCommentFormActions, addCommentFormReducer } from '@/widgets/Article'",
       errors: [{ message: "Layer can import only [shared, entities, features] layers."}],
       options: enableOptions,
+    },
+    {
+      filename: 'E:\\advanced-react\\src\\shared\\assets\\tests\\mockArticleData.ts...',
+      code: "import { Article, ArticleType, ArticleBlockType } from '@/entities/Article';",
+      errors: [{ message: "Layer can import only [shared] layers."}],
+      options: [
+        {...enableOptions[0], testFilesPatterns: ['NO **/tests/*']}
+      ],
     },
   ],
 });
