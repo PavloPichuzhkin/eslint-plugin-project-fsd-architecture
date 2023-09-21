@@ -1,4 +1,4 @@
-# Checks imports from other modules (allowed only from the public API) (`project-fsd-architecture/public-api-imports-validation`)
+# Checks imports from higher layer into layer below (`project-fsd-architecture/layer-imports`)
 
 <!-- end auto-generated rule header -->
 
@@ -12,8 +12,7 @@ Examples of **incorrect** code for this rule:
 
 ```js
 
-import { getProfileForm } from 'features/EditableProfileCard/model/selectors/getProfileForm/getProfileForm';
-
+// fill me in
 
 ```
 
@@ -21,17 +20,15 @@ Examples of **correct** code for this rule:
 
 ```js
 
-import { getProfileForm } from '@/features/EditableProfileCard';
-import { Comment } from '../../model/types/comments';
-import { Country, CountrySelect } from '@/entities/CountrySelect';
-
+// fill me in
 
 ```
 
 ### Options
+
 * `alias`: specify this option if you use alias.
 
-* `testFilesPatterns`: specify regex to detect test files.
+* `ignoreImportPatterns`: specify regex to detect import from ignored files.
 
 ## When Not To Use It
 

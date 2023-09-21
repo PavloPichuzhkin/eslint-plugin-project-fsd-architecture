@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-project-fsd-architecture",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "description": "eslint plugin for project fsd architecture validation",
   "keywords": [
     "eslint",

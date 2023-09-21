@@ -41,12 +41,13 @@ Then configure the rules you want to use under the rules section.
 
 ## Rules 
 
-<!-- begin auto-generated rules list  -->
+<!-- begin auto-generated rules list -->
 
-| Name                                      | Description                                                          |
+| Name                                                                         | Description                                                          |
 | :--------------------------------------------------------------------------- | :------------------------------------------------------------------- |
-| [public-api-imports-validation](docs/rules/public-api-imports-validation.md) | Checks imports from other modules (allowed only from the public API) |
-| [slice-imports-validation](docs/rules/slice-imports-validation.md)           | Checks imports within a module                                       |
+| [layer-imports](docs/rules/layer-imports.md)                                 | Checks imports from higher layer into layer below                    |
+| [public-api-imports-validation](https://github.com/PavloPichuzhkin/eslint-plugin-project-fsd-architecture/blob/master/docs/rules/public-api-imports-validation.md) | Checks imports from other modules (allowed only from the public API) |
+| [slice-imports-validation](https://github.com/PavloPichuzhkin/eslint-plugin-project-fsd-architecture/blob/master/docs/rules/slice-imports-validation.md)           | Checks imports within a module                                       |
 
 <!-- end auto-generated rules list -->
 
