@@ -73,18 +73,21 @@ ruleTester.run("public-api-imports-validation", rule, {
       code: "import { ProfileCard } from '@/entities/Profile/ui/ProfileCard';",
       errors: [{ message: "Imports from other modules are only allowed from the public API (index.ts)." }],
       options: enableOptions,
+      output: "import { ProfileCard } from '@/entities/Profile';",
     },
     { // no testFilesPatterns
       filename: 'E:\\advanced-react\\src\\entities\\entities\\forbidden.ts',
-      code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing'",
+      code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing';",
       errors: [{message: 'Imports from other modules are only allowed from the public API (index.ts).'}],
       options: enableOptions,
+      output: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article';",
     },
     {
       filename: 'E:\\advanced-react\\src\\entities\\StoreProviderDecorator.tsx',
-      code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing/file.tsx'",
+      code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing/file.tsx';",
       errors: [{message: 'Test data should be imported from public API (testing.ts).'}],
       options: enableOptions,
+      output: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing';",
     },
 
   ],
