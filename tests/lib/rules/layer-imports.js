@@ -78,6 +78,12 @@ ruleTester.run("layer-imports", rule, {
       errors: [],
       options: enableOptions,
     },
+    { // case processes slice-imports-validation rule
+      filename: 'E:\\advanced-react\\src\\features\\EditableProfileCard\\ui\\EditableProfileCard\\EditableProfileCard.tsx',
+      code: "import { getProfileForm } from '@/features/EditableProfileCard/model/selectors/getProfileForm/getProfileForm';",
+      errors: [],
+      options: enableOptions,
+    },
   ],
 
   invalid: [
@@ -105,6 +111,14 @@ ruleTester.run("layer-imports", rule, {
       errors: [{ message: "Layer can import only [shared] layers."}],
       options: [
         {...enableOptions[0], testFilesPatterns: ['NO **/tests/*']}
+      ],
+    },
+    {
+      filename: 'E:\\advanced-react\\src\\entities\\Article.tsx\\anyPath',
+      code: "import { StateSchema } from '@/app/providers/StoreProvider'",
+      errors: [{ message: "Layer can import only [shared, entities] layers."}],
+      options: [
+        {...enableOptions[0], ignoreImportPatterns: ['NOT!!!**/StoreProvider'],}
       ],
     },
   ],

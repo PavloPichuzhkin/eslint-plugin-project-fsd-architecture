@@ -32,9 +32,9 @@ ruleTester.run("slice-imports-validation", rule, {
       code: "import { ProfileCard } from '@/entities/Profile/ui/ProfileCard';",
       errors: [],
       options: [
-  {
-    alias: '@'
-  }
+        {
+          alias: '@'
+        }
 ],
     },
   ],

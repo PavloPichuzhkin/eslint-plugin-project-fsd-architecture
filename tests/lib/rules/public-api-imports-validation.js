@@ -48,7 +48,7 @@ ruleTester.run("public-api-imports-validation", rule, {
       code: "import { Country, CountrySelect } from '@/entities/CountrySelect';",
       options: enableOptions,
     },
-    { // but!  hir is testFilesPatterns, and it is already in prod build, and it is OK!
+    { // but!  hir is testFilesPatterns, and it is already in public API, and it is OK!
       filename: 'E:\\advanced-react\\src\\features\\EditableProfileCard\\model\\slice\\profileSlice.test.ts',
       code: "import { Country, CountrySelect } from '@/entities/CountrySelect';",
       options: enableOptions,
@@ -59,9 +59,15 @@ ruleTester.run("public-api-imports-validation", rule, {
       errors: [],
       options: enableOptions,
     },
-    {
+    { // testFilesPatterns, it is not in public API, so it is nessesert to create testing.ts API
       filename: 'E:\\advanced-react\\src\\shared\\config\\storybook\\StoreProviderDecorator.tsx',
       code: "import { loginReducer } from '@/features/AuthByUsername/testing';",
+      errors: [],
+      options: enableOptions,
+    },
+    { // against the architecture, used only in tests, so only test public API can exist
+      filename: 'E:\\advanced-react\\src\\shared\\config\\storybook\\StoreProviderDecorator.tsx',
+      code: "import { loginReducer } from '@/features/AuthByUsername';",
       errors: [],
       options: enableOptions,
     }

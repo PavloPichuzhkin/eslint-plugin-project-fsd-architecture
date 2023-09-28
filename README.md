@@ -28,15 +28,76 @@ Add `project-fsd-architecture` to the plugins section of your `.eslintrc` config
 }
 ```
 
+Project structure example:
 
-Then configure the rules you want to use under the rules section.
+```
+src
+  app
+  |  providers
+  |    ...
+  |    StoreProvider
+  |    |  ui
+  |    |  |  StoreProvider.tsx
+  |    |  index.ts
+  |    ThemeProvider
+  |    ...
+  pages
+  |  ...
+  |  Main
+  |    model
+  |    ui
+  |    |  MainPage.tsx
+  |    index.ts
+  widgets
+  |  Sidebar
+  |    model
+  |    |  selectors
+  |    |  types
+  |    |    sidebar.ts
+  |    ui
+  |    |  Sidebar.tsx
+  |    index.ts
+  |    testing.ts
+  features
+  entities    
+  shared
+    config
+      StoreProviderDecorator.tsx
+```
 
-```json
-{
-    "rules": {
-        "project-fsd-architecture/rule-name": "error"
-    }
+.eslintrc.js example:
+
+```js
+
+// your .eslintrc.js
+module.exports = {
+    // ...
+    plugins: [
+        // ...
+        'project-fsd-architecture',
+        // ...
+    ],
+    rules: {
+        // ...
+        'project-fsd-architecture/slice-imports-validation': ['error', { alias: '@' }],
+        'project-fsd-architecture/public-api-imports-validation':
+            [
+                'error', {
+                alias: '@',
+                testFilesPatterns: ['**/*.test.*', '**/*.story.*', '**/StoreProviderDecorator.tsx'],
+            },
+            ],
+        'project-fsd-architecture/layer-imports': [
+            'error',
+            {
+                alias: '@',
+                ignoreImportPatterns: ['**/StoreProvider', '**/testing', '**/router'],
+                testFilesPatterns: ['**/tests/*'],
+            },
+        ],
+    },
 }
+
 ```
 
 ## Rules 
