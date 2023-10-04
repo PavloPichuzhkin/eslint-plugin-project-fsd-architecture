@@ -48,7 +48,8 @@ ruleTester.run("slice-imports-validation", rule, {
         {
           alias: '@'
         }
-      ]
+      ],
+      output: "import { getProfileForm } from '../../model/selectors/getProfileForm/getProfileForm';",
     },
     {
       filename: 'E:\\advanced-react\\src\\features\\EditableProfileCard\\ui\\EditableProfileCard\\EditableProfileCard.tsx',
@@ -59,12 +60,14 @@ ruleTester.run("slice-imports-validation", rule, {
         {
           alias: '@'
         }
-      ]
+      ],
+      output: "import { getProfileForm } from '../../model/selectors/getProfileForm/getProfileForm';",
     },
     {
       filename: 'E:\\advanced-react\\src\\features\\EditableProfileCard\\ui\\EditableProfileCard\\EditableProfileCard.tsx',
       code: "import { getProfileForm } from 'features/EditableProfileCard/model/selectors/getProfileForm/getProfileForm';",
       errors: [{ message: "same slice - import should be relative"}],
+      output: "import { getProfileForm } from '../../model/selectors/getProfileForm/getProfileForm';",
     },
   ],
 });

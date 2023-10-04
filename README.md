@@ -106,7 +106,7 @@ module.exports = {
 
 | Name                                                                         | Description                                                          |
 | :--------------------------------------------------------------------------- | :------------------------------------------------------------------- |
-| [layer-imports](docs/rules/layer-imports.md)                                 | Checks imports from higher layer into layer below                    |
+| [layer-imports](https://github.com/PavloPichuzhkin/eslint-plugin-project-fsd-architecture/blob/master/docs/rules/layer-imports.md)                                 | Checks imports from higher layer into layer below                    |
 | [public-api-imports-validation](https://github.com/PavloPichuzhkin/eslint-plugin-project-fsd-architecture/blob/master/docs/rules/public-api-imports-validation.md) | Checks imports from other modules (allowed only from the public API) |
 | [slice-imports-validation](https://github.com/PavloPichuzhkin/eslint-plugin-project-fsd-architecture/blob/master/docs/rules/slice-imports-validation.md)           | Checks imports within a module                                       |
 
